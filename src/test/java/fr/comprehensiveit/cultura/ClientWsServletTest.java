@@ -72,7 +72,7 @@ public class ClientWsServletTest {
 		Object[] objRet = new ClientWSServlet().getParameters(req);
 		System.out.println("Objet : "+objRet.toString());
 	}
-	@Test
+	@Ignore
 	public void testDoPost() throws ServletException, IOException  {
 		GenericUrl url = new GenericUrl("http://localhost:8080/cultura/searchAsset");
 		

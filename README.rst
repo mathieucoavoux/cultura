@@ -1,6 +1,13 @@
-Cultura 
-=======
+==============================
+Cultura
+==============================*
 
+*Application pour test*
+
+.. image:: https://api.travis-ci.org/mathieucoavoux/cultura.svg?branch=master
+    :target: https://travis-ci.org/mathieucoavoux/cultura
+    :alt: Master branch build status
+    
 Cette application a été créée afin de créer un exemple d'utilisation de la méthode invoke.
 
 FAQ
