@@ -1,0 +1,31 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+  	<servlet-name>ClientWS</servlet-name>
+  	<display-name>ClientWS</display-name>
+  	<description></description>
+  	<servlet-class>fr.comprehensiveit.cultura.ClientWS</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>ClientWSServlet</servlet-name>
+  	<display-name>ClientWSServlet</display-name>
+  	<description></description>
+  	<servlet-class>fr.comprehensiveit.cultura.ClientWSServlet</servlet-class>
+  </servlet>
+ <!--   <servlet-mapping>
+  	<servlet-name>ClientWS</servlet-name>
+  	<url-pattern>/ClientWS</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ClientWS</servlet-name>
+  	<url-pattern>/clientws/*</url-pattern>
+  </servlet-mapping> -->
+  <servlet-mapping> 
+  	<servlet-name>ClientWSServlet</servlet-name>
+  	<url-pattern>/searchAsset</url-pattern>
+  </servlet-mapping>
+</web-app>
