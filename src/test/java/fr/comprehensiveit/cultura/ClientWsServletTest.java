@@ -11,6 +11,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.BDDMockito.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -97,7 +98,8 @@ public class ClientWsServletTest {
 			String idISBN = jsonResponse.getJSONObject("0").getString("id").toString();
 			assertEquals(idISBN,"9780736813709");
 		}catch (ConnectException e) {
-			assertEquals("Connection refused: connect",e.getMessage());
+			String errorMessage = e.getMessage();
+			assertTrue(errorMessage.matches("Connection refused.*"));
 			System.out.println("Server not available");
 		}
 		
