@@ -5,19 +5,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONObject;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static org.junit.Assert.assertEquals;
 import static org.mockito.BDDMockito.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
+import java.net.ConnectException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
 
@@ -72,7 +77,7 @@ public class ClientWsServletTest {
 		Object[] objRet = new ClientWSServlet().getParameters(req);
 		System.out.println("Objet : "+objRet.toString());
 	}
-	@Ignore
+	@Test
 	public void testDoPost() throws ServletException, IOException  {
 		GenericUrl url = new GenericUrl("http://localhost:8080/cultura/searchAsset");
 		
@@ -86,10 +91,16 @@ public class ClientWsServletTest {
 		HttpContent tempContent = new UrlEncodedContent(tempParameters);
 		
 		HttpRequest request = transport.createRequestFactory().buildPostRequest(url,tempContent);
-
-		HttpResponse response = request.execute();
-
-		System.out.println("Result : "+response.parseAsString());
+		try {
+			HttpResponse response = request.execute();
+			JSONObject jsonResponse = new JSONObject(response.parseAsString());
+			String idISBN = jsonResponse.getJSONObject("0").getString("id").toString();
+			assertEquals(idISBN,"9780736813709");
+		}catch (ConnectException e) {
+			assertEquals("Connection refused: connect",e.getMessage());
+			System.out.println("Server not available");
+		}
+		
 		
 	}
 }
